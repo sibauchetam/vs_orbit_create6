@@ -49,6 +49,7 @@ mixin {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    maven { url = "https://maven.createmod.net" }
     maven { name = "CurseForge Maven"
         url = "https://cursemaven.com"
         content { includeGroup("curse.maven") } }
