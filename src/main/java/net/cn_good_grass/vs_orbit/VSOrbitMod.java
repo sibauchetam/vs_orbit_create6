@@ -1,6 +1,7 @@
 package net.cn_good_grass.vs_orbit;
 
 import com.mojang.logging.LogUtils;
+import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.cn_good_grass.vs_orbit.block.VSOrbitModBlockEntities;
 import net.cn_good_grass.vs_orbit.block.VSOrbitModBlocks;
 import net.cn_good_grass.vs_orbit.entity.VSOrbitModEntities;
@@ -46,6 +47,12 @@ public class VSOrbitMod
     //日志输出
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID);
+
+    public static CreateRegistrate registrate() {
+        return REGISTRATE;
+    }
+
     private static final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
     public VSOrbitMod()
@@ -61,6 +68,8 @@ public class VSOrbitMod
 
         eventBus.addListener(this::onCommonSetup);
         eventBus.addListener(this::onClientSetup);
+        // This is called here to ensure that the static fields in CreateRegistrar are initialized.
+        CreateRegistrar.register();
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event) {
