@@ -1,22 +1,17 @@
 package net.cn_good_grass.vs_orbit.procedures.create;
 
-import com.simibubi.create.content.redstone.displayLink.AllDisplayBehaviours;
-import com.simibubi.create.content.redstone.displayLink.source.DisplaySource;
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.tterrag.registrate.util.entry.BlockEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.cn_good_grass.vs_orbit.VSOrbitMod;
-import net.cn_good_grass.vs_orbit.block.VSOrbitModBlocks;
-import net.cn_good_grass.vs_orbit.block.blocks.CelestialTachymeterBlock;
-import net.cn_good_grass.vs_orbit.procedures.CompatMods;
 import net.cn_good_grass.vs_orbit.procedures.create.DisplaySource.CelestialTachymeterDisplaySource;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.fml.ModList;
-
-import java.lang.reflect.Method;
+import com.simibubi.create.api.behaviour.display.DisplaySource;
 
 public class CreateRegistrar {
+    private static final CreateRegistrate REGISTRATE = VSOrbitMod.registrate();
+
+    public static final RegistryEntry<DisplaySource, CelestialTachymeterDisplaySource> CELESTIAL_TACHYMETER_DISPLAY_SOURCE = REGISTRATE.displaySource("celestial_tachymeter_display_source", CelestialTachymeterDisplaySource::new)
+            .register();
+
     public static void register() {
-        AllDisplayBehaviours.assignDataBehaviour(new CelestialTachymeterDisplaySource(), "celestial_tachymeter_display_source").accept(VSOrbitModBlocks.celestial_tachymeter.get());
     }
 }
